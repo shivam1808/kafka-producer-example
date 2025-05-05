@@ -14,6 +14,9 @@ public class KafkaMessagePublisher {
     @Autowired
     private KafkaTemplate<String, Object> template;
 
+    /*
+      Kafka will create a topic automatically with Default Configuration
+    */
     public void sendMessageToTopic(String message) throws InterruptedException, ExecutionException {
         CompletableFuture<SendResult<String, Object>> future = template.send("kafka-practice", message);
         future.whenComplete((result, ex) -> {
